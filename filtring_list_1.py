@@ -37,7 +37,8 @@ number_of_single_elements):
     return main_list
 
 def selective_filtering(big_list,filtr):
-    dictionary = [element_in_big_list for element_in_big_list in big_list if type(element_in_big_list)==type({})]
+    dictionary = [element_in_big_list for element_in_big_list 
+    in big_list if type(element_in_big_list)==type({})]
     for x in dictionary:
         for _key, value in x.items():
             for _key_1, value_1 in value.items():

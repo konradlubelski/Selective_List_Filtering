@@ -34,16 +34,14 @@ number_of_single_dictionary):
      "age":random.choice(list_of_age),
      "profession":random.choice(list_of_profession)} ) 
     
-    #pprint(main_list)
-    pprint("")
     return main_list
 
 def selective_filtering(big_list,filtr):
-    pprint(big_list)
-    if type(filtr)==type(""):
+    filtering_list= []
+    if type(filtr)==str:
 
         if len(filtr)==0:
-            pprint(big_list)
+            return big_list
 
         elif (len(filtr)>0 and len(filtr)<=3):
             print("the function does not filter anything for this parameter")  
@@ -54,16 +52,17 @@ def selective_filtering(big_list,filtr):
 
                 for _key, _value in _x.items():
 
-                    if ((type(_value) == type("") or
-                     type(_value) == type(int))  and filtr == _value):
-                        pprint(_x)
+                    if ((type(_value) == str or
+                     type(_value) == int)  and filtr == _value):
+                        filtering_list.append(_x)
 
-                    elif type(_value) == type({}):
+                    elif type(_value) == dict:
                         for _key_1, _value_1 in _value.items():
                             if _value_1 == filtr:
-                                pprint(_value)
+                                filtering_list.append(_value)
+            return filtering_list
 
-    elif type(filtr)!=type(""):
+    elif type(filtr)!= str:
         print("please enter a filter variable in a string type")
 
 selective_filtering(generator_of_main_list(3,3,6),"Gates")

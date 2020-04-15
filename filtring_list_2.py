@@ -36,6 +36,9 @@ number_of_single_dictionary):
     
     return main_list
 
+def check_append (value_checked):
+    return isinstance(value_checked,dict)
+        
 def selective_filtering(big_list,filtr):
     filtering_list= []
     if type(filtr)==str:
@@ -52,17 +55,23 @@ def selective_filtering(big_list,filtr):
 
                 for _key, _value in _x.items():
 
-                    if ((type(_value) == str or
-                     type(_value) == int)  and filtr == _value):
+                    if (check_append(_value) == False  and filtr == _value):
                         filtering_list.append(_x)
 
-                    elif type(_value) == dict:
-                        for _key_1, _value_1 in _value.items():
-                            if _value_1 == filtr:
-                                filtering_list.append(_value)
+                    elif check_append(_value):
+                        filtering_list =[_value for _key_1, _value_1 
+                        in _value.items() if _value_1 == filtr]
+                            
             return filtering_list
 
     elif type(filtr)!= str:
         print("please enter a filter variable in a string type")
+  
+x=selective_filtering(generator_of_main_list(3,3,6),"Gates")
+print(x)
 
-selective_filtering(generator_of_main_list(3,3,6),"Gates")
+
+
+
+
+
